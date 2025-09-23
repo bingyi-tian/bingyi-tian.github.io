@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on ExampleSite</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on ExampleSite</description>
+    <image>
+      <title>ExampleSite</title>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 22 Sep 2025 22:50:21 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First Post</title>
+      <link>http://localhost:1313/post/my-first-post/</link>
+      <pubDate>Mon, 22 Sep 2025 22:50:21 +0800</pubDate>
+      <guid>http://localhost:1313/post/my-first-post/</guid>
+      <description>&lt;h1 id=&#34;算法分为refinement细化和carving雕刻&#34;&gt;算法分为Refinement细化和Carving雕刻&lt;/h1&gt;
+&lt;h2 id=&#34;检查门&#34;&gt;检查门&lt;/h2&gt;
+&lt;p&gt;如果门不可被alpha球穿过，证明这个门已经达到目标尺寸了，所以就停止收缩了，就跳过他&lt;/p&gt;
+&lt;h2 id=&#34;规则r1-refinement---voronoi边相交-&#34;&gt;规则R1（ Refinement - Voronoi边相交 ）&lt;/h2&gt;
+&lt;p&gt;计算门f的对偶边，也就是链接这个门两边的四面体，如果这个连接线与偏移曲面相交，则触发规则R1：&lt;/p&gt;
+&lt;p&gt;将从outside指向inside方向的第一个交点作为Steiner点插入到Delaunay三角剖分中。&lt;/p&gt;
+&lt;h2 id=&#34;规则r2refinement---防止暴露输入&#34;&gt;规则R2（Refinement - 防止暴露输入）&lt;/h2&gt;
+&lt;p&gt;若两个相邻单元的外接球中心相连组成的线段，与偏移曲面不相交，但是inside这个四面体与输入几何体相交，如果对他进行雕刻的话，就暴露了，所以自然而然的出现！规则2：把这个与输入几何体相交的四面体的外接球球心搞出来，然后往几何体上投影，这个投影就是steiner点。&lt;/p&gt;
+&lt;h2 id=&#34;雕刻&#34;&gt;雕刻&lt;/h2&gt;
+&lt;p&gt;如果没有触发这些规则：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;门大于alpha球&lt;/li&gt;
+&lt;li&gt;inside这个四面体不与输入几何相交，即同时不满足上面的两个Rule
+&lt;ol&gt;
+&lt;li&gt;门的对偶边，outside四面体和inside四面体的外接球心连线不会与偏移曲面相交&lt;/li&gt;
+&lt;li&gt;inside 不予输入几何相交&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;就执行雕刻，雕刻这个词有点装逼，其实就是把inside这个单元标记为outside，然后检查这个outside四面体，把其中新生成的三个面中，满足面的大小大于alpha的面加入门的优先级队列。&lt;/p&gt;
+&lt;h2 id=&#34;终止条件&#34;&gt;终止条件&lt;/h2&gt;
+&lt;p&gt;首先明确一个数值Φ(f)，Φ(f)就是面f的最小Delaunay球半径？？？？还是外接圆？？？&lt;/p&gt;
+&lt;p&gt;也就是说是这个面最小空球半径&lt;/p&gt;
+&lt;p&gt;面的 &lt;strong&gt;Φ(f)&lt;/strong&gt; 必然递减，每次插入Steiner点时，新生成的面的Φ(f)&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
