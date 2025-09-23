@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Alpha Wrap on ExampleSite</title>
-    <link>http://localhost:1313/tags/alpha-wrap/</link>
-    <description>Recent content in Alpha Wrap on ExampleSite</description>
+    <title>Alpha Wrap on wood</title>
+    <link>https://bingyi-tian.github.io/tags/alpha-wrap/</link>
+    <description>Recent content in Alpha Wrap on wood</description>
     <image>
-      <title>ExampleSite</title>
-      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <title>wood</title>
+      <url>https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- 0.150.0</generator>
     <language>en</language>
     <lastBuildDate>Tue, 23 Sep 2025 13:38:43 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/alpha-wrap/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://bingyi-tian.github.io/tags/alpha-wrap/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Alpha Wrap</title>
-      <link>http://localhost:1313/post/alpha-wrap/</link>
+      <link>https://bingyi-tian.github.io/post/alpha-wrap/</link>
       <pubDate>Tue, 23 Sep 2025 13:38:43 +0800</pubDate>
-      <guid>http://localhost:1313/post/alpha-wrap/</guid>
+      <guid>https://bingyi-tian.github.io/post/alpha-wrap/</guid>
       <description>&lt;h1 id=&#34;算法分为refinement细化和carving雕刻&#34;&gt;算法分为Refinement细化和Carving雕刻&lt;/h1&gt;
 &lt;h2 id=&#34;检查门&#34;&gt;检查门&lt;/h2&gt;
 &lt;p&gt;如果门不可被alpha球穿过，证明这个门已经达到目标尺寸了，所以就停止收缩了，就跳过他&lt;/p&gt;

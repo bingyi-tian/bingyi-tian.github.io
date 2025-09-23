@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cgal on wood</title>
+    <link>https://bingyi-tian.github.io/tags/cgal/</link>
+    <description>Recent content in Cgal on wood</description>
+    <image>
+      <title>wood</title>
+      <url>https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 23 Sep 2025 14:44:18 +0800</lastBuildDate>
+    <atom:link href="https://bingyi-tian.github.io/tags/cgal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cgal中kernel Predicate Oracle都是什么鬼</title>
+      <link>https://bingyi-tian.github.io/post/cgal%E4%B8%ADkernel-predicate-oracle%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E9%AC%BC/</link>
+      <pubDate>Tue, 23 Sep 2025 14:44:18 +0800</pubDate>
+      <guid>https://bingyi-tian.github.io/post/cgal%E4%B8%ADkernel-predicate-oracle%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E9%AC%BC/</guid>
+      <description>学习一下这几个都是什么</description>
+    </item>
+  </channel>
+</rss>

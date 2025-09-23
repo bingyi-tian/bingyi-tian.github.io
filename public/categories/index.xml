@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Categories on ExampleSite</title>
-    <link>http://localhost:1313/categories/</link>
-    <description>Recent content in Categories on ExampleSite</description>
+    <title>Categories on wood</title>
+    <link>https://bingyi-tian.github.io/categories/</link>
+    <description>Recent content in Categories on wood</description>
     <image>
-      <title>ExampleSite</title>
-      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <title>wood</title>
+      <url>https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- 0.150.0</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 23 Sep 2025 13:38:43 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Sep 2025 14:44:18 +0800</lastBuildDate>
+    <atom:link href="https://bingyi-tian.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cgal</title>
+      <link>https://bingyi-tian.github.io/categories/cgal/</link>
+      <pubDate>Tue, 23 Sep 2025 14:44:18 +0800</pubDate>
+      <guid>https://bingyi-tian.github.io/categories/cgal/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Study</title>
-      <link>http://localhost:1313/categories/study/</link>
+      <link>https://bingyi-tian.github.io/categories/study/</link>
       <pubDate>Tue, 23 Sep 2025 13:38:43 +0800</pubDate>
-      <guid>http://localhost:1313/categories/study/</guid>
+      <guid>https://bingyi-tian.github.io/categories/study/</guid>
       <description></description>
     </item>
   </channel>
