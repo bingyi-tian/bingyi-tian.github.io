@@ -11,20 +11,13 @@
     </image>
     <generator>Hugo -- 0.150.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Sep 2025 22:50:21 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Sep 2025 13:38:43 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>博客搭建</title>
-      <link>http://localhost:1313/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Mon, 22 Sep 2025 22:50:21 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>技术教程</title>
-      <link>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/</link>
-      <pubDate>Mon, 22 Sep 2025 22:50:21 +0800</pubDate>
-      <guid>http://localhost:1313/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/</guid>
+      <title>Study</title>
+      <link>http://localhost:1313/categories/study/</link>
+      <pubDate>Tue, 23 Sep 2025 13:38:43 +0800</pubDate>
+      <guid>http://localhost:1313/categories/study/</guid>
       <description></description>
     </item>
   </channel>

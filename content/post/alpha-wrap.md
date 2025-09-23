@@ -1,10 +1,10 @@
 +++
-date = '2025-09-22T22:50:21+08:00'
-draft = true
-title = 'My First Post'
-categories = ["技术教程", "博客搭建"]
-tags =  ["hugo", "github", "入门"]
-
+date = '2025-09-23T13:38:43+08:00'
+draft = false
+title = 'Alpha Wrap'
+tags = ["Alpha Wrap", "study"]
+categories="study"
+author="bingyi-tian"
 
 +++
 

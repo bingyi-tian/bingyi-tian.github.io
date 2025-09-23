@@ -11,13 +11,13 @@
     </image>
     <generator>Hugo -- 0.150.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Sep 2025 22:50:21 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Sep 2025 13:38:43 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My First Post</title>
-      <link>http://localhost:1313/post/my-first-post/</link>
-      <pubDate>Mon, 22 Sep 2025 22:50:21 +0800</pubDate>
-      <guid>http://localhost:1313/post/my-first-post/</guid>
+      <title>Alpha Wrap</title>
+      <link>http://localhost:1313/post/alpha-wrap/</link>
+      <pubDate>Tue, 23 Sep 2025 13:38:43 +0800</pubDate>
+      <guid>http://localhost:1313/post/alpha-wrap/</guid>
       <description>&lt;h1 id=&#34;算法分为refinement细化和carving雕刻&#34;&gt;算法分为Refinement细化和Carving雕刻&lt;/h1&gt;
 &lt;h2 id=&#34;检查门&#34;&gt;检查门&lt;/h2&gt;
 &lt;p&gt;如果门不可被alpha球穿过，证明这个门已经达到目标尺寸了，所以就停止收缩了，就跳过他&lt;/p&gt;
