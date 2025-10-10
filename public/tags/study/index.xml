@@ -9,7 +9,7 @@
       <url>https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.150.0</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
     <lastBuildDate>Tue, 23 Sep 2025 13:38:43 +0800</lastBuildDate>
     <atom:link href="https://bingyi-tian.github.io/tags/study/index.xml" rel="self" type="application/rss+xml" />
@@ -42,7 +42,8 @@
 &lt;p&gt;首先明确一个数值Φ(f)，Φ(f)就是面f的最小Delaunay球半径？？？？还是外接圆？？？&lt;/p&gt;
 &lt;p&gt;也就是说是这个面最小空球半径&lt;/p&gt;
 &lt;p&gt;面的 &lt;strong&gt;Φ(f)&lt;/strong&gt; 必然递减，每次插入Steiner点时，新生成的面的Φ(f)&lt;/p&gt;
-&lt;p&gt;​&lt;/p&gt;</description>
+&lt;p&gt;​&lt;/p&gt;
+&lt;p&gt;放了个国庆，要收收心了。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
