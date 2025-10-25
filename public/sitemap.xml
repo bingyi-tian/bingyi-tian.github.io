@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://bingyi-tian.github.io/post/</loc>
+    <lastmod>2025-10-25T15:45:03+08:00</lastmod>
+  </url><url>
+    <loc>https://bingyi-tian.github.io/post/run_alpha_wrap3/</loc>
+    <lastmod>2025-10-25T15:45:03+08:00</lastmod>
+  </url><url>
+    <loc>https://bingyi-tian.github.io/</loc>
+    <lastmod>2025-10-25T15:45:03+08:00</lastmod>
+  </url><url>
     <loc>https://bingyi-tian.github.io/categories/</loc>
     <lastmod>2025-09-23T14:44:18+08:00</lastmod>
   </url><url>
@@ -14,16 +23,10 @@
     <loc>https://bingyi-tian.github.io/post/cgal%E4%B8%ADkernel-predicate-oracle%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E9%AC%BC/</loc>
     <lastmod>2025-09-23T14:44:18+08:00</lastmod>
   </url><url>
-    <loc>https://bingyi-tian.github.io/post/</loc>
-    <lastmod>2025-09-23T14:44:18+08:00</lastmod>
-  </url><url>
     <loc>https://bingyi-tian.github.io/tags/stady/</loc>
     <lastmod>2025-09-23T14:44:18+08:00</lastmod>
   </url><url>
     <loc>https://bingyi-tian.github.io/tags/</loc>
-    <lastmod>2025-09-23T14:44:18+08:00</lastmod>
-  </url><url>
-    <loc>https://bingyi-tian.github.io/</loc>
     <lastmod>2025-09-23T14:44:18+08:00</lastmod>
   </url><url>
     <loc>https://bingyi-tian.github.io/post/alpha-wrap/</loc>
