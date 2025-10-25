@@ -11,8 +11,42 @@
     </image>
     <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 25 Oct 2025 15:45:03 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 25 Oct 2025 18:28:28 +0800</lastBuildDate>
     <atom:link href="https://bingyi-tian.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>运行自适应包面算法注意事项</title>
+      <link>https://bingyi-tian.github.io/post/%E8%BF%90%E8%A1%8C%E8%87%AA%E9%80%82%E5%BA%94%E5%8C%85%E9%9D%A2%E7%AE%97%E6%B3%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>
+      <pubDate>Sat, 25 Oct 2025 18:28:28 +0800</pubDate>
+      <guid>https://bingyi-tian.github.io/post/%E8%BF%90%E8%A1%8C%E8%87%AA%E9%80%82%E5%BA%94%E5%8C%85%E9%9D%A2%E7%AE%97%E6%B3%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
+      <description>&lt;p&gt;目前算法只支持obj模型&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>自适应alpha的alphawrap参数有哪些</title>
+      <link>https://bingyi-tian.github.io/post/%E8%87%AA%E9%80%82%E5%BA%94alpha%E7%9A%84alphawrap%E5%8F%82%E6%95%B0%E6%9C%89%E5%93%AA%E4%BA%9B/</link>
+      <pubDate>Sat, 25 Oct 2025 16:19:06 +0800</pubDate>
+      <guid>https://bingyi-tian.github.io/post/%E8%87%AA%E9%80%82%E5%BA%94alpha%E7%9A%84alphawrap%E5%8F%82%E6%95%B0%E6%9C%89%E5%93%AA%E4%BA%9B/</guid>
+      <description>&lt;p&gt;注意很多模型有重复点，要先把重复点消除掉，可以用meshlab&lt;/p&gt;
+&lt;p&gt;首先，代码的核心创新点，alpha的特征自适应，是通过feature_coff控制的，具体实现如下（在geometry_utils.h中）：
+简洁版本：
+// 特征边处理 - 更高密度采样
+if (是特征边) {
+mean_sizing /= (基础系数 * 特征系数);
+} else {
+mean_sizing /= 基础系数;
+}
+原版本：
+// 特征边处理
+// find feature edge
+// e_feature_ 是一个标记数组（如Eigen矩阵或二维数组），存储每条边是否为特征边
+if (m_oracle.e_feature_(face_id * 3, 0) == 1 || m_oracle.e_feature_(face_id * 3 + 1, 0) == 1 || m_oracle.e_feature_(face_id * 3 + 2, 0) == 1) {
+// coff_是全局缩放系数，控制整体网格密度。
+// feature_coff_是特征边的缩放系数，控制特征边的局部密度。
+mean_sizing /= (m_oracle.coff_ * m_oracle.feature_coff_);
+}
+else {
+mean_sizing /= m_oracle.coff_;
+}&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Run_alpha_wrap3</title>
       <link>https://bingyi-tian.github.io/post/run_alpha_wrap3/</link>
