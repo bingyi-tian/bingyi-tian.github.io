@@ -11,8 +11,143 @@
     </image>
     <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 25 Oct 2025 18:28:28 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Nov 2025 18:52:32 +0800</lastBuildDate>
     <atom:link href="https://bingyi-tian.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self_intersections</title>
+      <link>https://bingyi-tian.github.io/post/self_intersections/</link>
+      <pubDate>Tue, 18 Nov 2025 18:52:32 +0800</pubDate>
+      <guid>https://bingyi-tian.github.io/post/self_intersections/</guid>
+      <description>&lt;p&gt;remove_self_intersections 和 autorefine_and_remove_self_intersections 是 CGAL 中用于处理多边形网格自相交问题的两个不同函数。虽然它们都有修复自相交网格的功能，但它们的具体操作和应用场景有所不同。&lt;/p&gt;
+&lt;p&gt;remove_self_intersections： 检测并移除多边形网格中的自相交部分，再填补孔洞，得到的网格是分离的。&lt;/p&gt;
+&lt;p&gt;autorefine_and_remove_self_intersections：不仅检测并移除自相交，还会自动进行网格细化，以提高网格质量，得到的网格是连接在一起的。&lt;/p&gt;
+&lt;p&gt;1.自相交检测&lt;/p&gt;
+&lt;p&gt;bool intersecting = CGAL::Polygon_mesh_processing::does_self_intersect(mesh);
+AI写代码
+cpp
+运行
+检测时间测试
+文件大小	时间（秒）
+25M	0.034
+50M	0.05
+100M	0.109
+200M	0.2
+400M	 0.408
+1G	0.952
+2.删除自相交&lt;/p&gt;
+&lt;p&gt;CGAL::Polygon_mesh_processing::experimental::remove_self_intersections(mesh);
+AI写代码
+cpp
+运行
+效果测试：
+&lt;img alt=&#34;image-20251118185315124&#34; loading=&#34;lazy&#34; src=&#34;e:\\Users\\Administrator\\Desktop\\blog\\bingyi-tian.github.io\\content\\post\\image\\image-20251118185315124.png&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;时间测试&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;文件大小&lt;/th&gt;
+          &lt;th&gt;时间（秒）&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;25M&lt;/td&gt;
+          &lt;td&gt;1.838&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;50M&lt;/td&gt;
+          &lt;td&gt;4.115&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;100M&lt;/td&gt;
+          &lt;td&gt;10.787&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;200M&lt;/td&gt;
+          &lt;td&gt;28.593&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400M&lt;/td&gt;
+          &lt;td&gt;68.749&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1G&lt;/td&gt;
+          &lt;td&gt;223.132&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;3.删除自相交和网格重新细化&lt;/p&gt;
+&lt;p&gt;CGAL::Polygon_mesh_processing::experimental::autorefine_and_remove_self_intersections(mesh);&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;效果测试：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&#34;image-20251118185401340&#34; loading=&#34;lazy&#34; src=&#34;e:\\Users\\Administrator\\Desktop\\blog\\bingyi-tian.github.io\\content\\post\\image\\image-20251118185401340.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;时间测试 ：
+提示“exception Non-handled triple intersection of input triangles”，未能得到修复时间&lt;/p&gt;
+&lt;p&gt;测试电脑：
+处理器    12th Gen Intel(R) Core(TM) i7-12700   2.10 GHz
+RAM    32.0 GB&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Polygon_Mesh_Processing学习</title>
+      <link>https://bingyi-tian.github.io/post/polygon_mesh_processing%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Sun, 16 Nov 2025 19:23:01 +0800</pubDate>
+      <guid>https://bingyi-tian.github.io/post/polygon_mesh_processing%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cgal配置教程</title>
+      <link>https://bingyi-tian.github.io/post/cgal%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Sun, 16 Nov 2025 15:01:36 +0800</pubDate>
+      <guid>https://bingyi-tian.github.io/post/cgal%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</guid>
+      <description>&lt;p&gt;先安装ceres:&lt;/p&gt;
+&lt;p&gt;基于官方文档，我为你推荐&lt;strong&gt;最简单实用的安装方案&lt;/strong&gt;：&lt;/p&gt;
+&lt;h2 id=&#34;方案1使用vcpkg一键安装强烈推荐&#34;&gt;方案1：使用vcpkg一键安装（强烈推荐）&lt;/h2&gt;
+&lt;p&gt;这是最省心的方法，适合99%的用户：&lt;/p&gt;
+&lt;h3 id=&#34;步骤1安装vcpkg&#34;&gt;步骤1：安装vcpkg&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 在合适的位置（如D盘根目录）打开PowerShell
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+.\bootstrap-vcpkg.bat
+.\vcpkg integrate install
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;步骤2安装ceres及所有依赖&#34;&gt;步骤2：安装Ceres及所有依赖&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 安装基础版本（推荐）
+.\vcpkg.exe install ceres:x64-windows
+
+# 或者安装包含SuiteSparse的完整版本
+.\vcpkg.exe install ceres[suitesparse]:x64-windows
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;步骤3配置你的cgal项目&#34;&gt;步骤3：配置你的CGAL项目&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd 你的项目目录
+cmake -DCMAKE_BUILD_TYPE=Release ^
+      -DCGAL_DIR=&amp;#34;D:\VisualStudio\Source\cgal\cgal\cgal&amp;#34; ^
+      -DCMAKE_TOOLCHAIN_FILE=&amp;#34;D:\vcpkg\scripts\buildsystems\vcpkg.cmake&amp;#34; ^
+      ../..
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;方案2手动编译仅限特殊情况&#34;&gt;方案2：手动编译（仅限特殊情况）&lt;/h2&gt;
+&lt;p&gt;只有在需要特定版本或自定义配置时才用此方法：&lt;/p&gt;
+&lt;h3 id=&#34;步骤1安装依赖&#34;&gt;步骤1：安装依赖&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 先用vcpkg安装依赖（这样最简单）
+.\vcpkg.exe install eigen3 glog gflags:x64-windows
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;步骤2编译ceres&#34;&gt;步骤2：编译Ceres&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/ceres-solver/ceres-solver.git
+cd ceres-solver
+mkdir build
+cd build
+
+# 配置（替换为你的实际路径）
+cmake .. ^
+    -DCMAKE_INSTALL_PREFIX=&amp;#34;D:\Libraries\ceres&amp;#34; ^
+    -DEigen3_DIR=&amp;#34;D:\vcpkg\installed\x64-windows\share\eigen3&amp;#34; ^
+    -Dglog_DIR=&amp;#34;D:\vcpkg\installed\x64-windows\share\glog&amp;#34; ^
+    -Dgflags_DIR=&amp;#34;D:\vcpkg\installed\x64-windows\share\gflags&amp;#34; ^
+    -G &amp;#34;Visual Studio 17 2022&amp;#34; -A x64
+
+cmake --build . --config Release
+cmake --install . --config Release
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;验证安装&#34;&gt;验证安装&lt;/h2&gt;
+&lt;p&gt;安装成功后，重新配置项目应该看到：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>运行自适应包面算法注意事项</title>
       <link>https://bingyi-tian.github.io/post/%E8%BF%90%E8%A1%8C%E8%87%AA%E9%80%82%E5%BA%94%E5%8C%85%E9%9D%A2%E7%AE%97%E6%B3%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>

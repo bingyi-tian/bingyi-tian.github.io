@@ -2,3 +2,5 @@ hugo new post/文章标题.md
 hugo; git add .; git commit -m "发布新博客"; git push origin master
 
 本地启动hugo服务器：hugo server -D
+
+如果有问题，改用cmd

@@ -1,0 +1,363 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Cgal配置教程 | wood</title><meta name=keywords content=","><meta name=description content='先安装ceres:
+基于官方文档，我为你推荐最简单实用的安装方案：
+方案1：使用vcpkg一键安装（强烈推荐）
+这是最省心的方法，适合99%的用户：
+步骤1：安装vcpkg
+# 在合适的位置（如D盘根目录）打开PowerShell
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+.\bootstrap-vcpkg.bat
+.\vcpkg integrate install
+步骤2：安装Ceres及所有依赖
+# 安装基础版本（推荐）
+.\vcpkg.exe install ceres:x64-windows
+
+# 或者安装包含SuiteSparse的完整版本
+.\vcpkg.exe install ceres[suitesparse]:x64-windows
+步骤3：配置你的CGAL项目
+cd 你的项目目录
+cmake -DCMAKE_BUILD_TYPE=Release ^
+      -DCGAL_DIR="D:\VisualStudio\Source\cgal\cgal\cgal" ^
+      -DCMAKE_TOOLCHAIN_FILE="D:\vcpkg\scripts\buildsystems\vcpkg.cmake" ^
+      ../..
+方案2：手动编译（仅限特殊情况）
+只有在需要特定版本或自定义配置时才用此方法：
+步骤1：安装依赖
+# 先用vcpkg安装依赖（这样最简单）
+.\vcpkg.exe install eigen3 glog gflags:x64-windows
+步骤2：编译Ceres
+git clone https://github.com/ceres-solver/ceres-solver.git
+cd ceres-solver
+mkdir build
+cd build
+
+# 配置（替换为你的实际路径）
+cmake .. ^
+    -DCMAKE_INSTALL_PREFIX="D:\Libraries\ceres" ^
+    -DEigen3_DIR="D:\vcpkg\installed\x64-windows\share\eigen3" ^
+    -Dglog_DIR="D:\vcpkg\installed\x64-windows\share\glog" ^
+    -Dgflags_DIR="D:\vcpkg\installed\x64-windows\share\gflags" ^
+    -G "Visual Studio 17 2022" -A x64
+
+cmake --build . --config Release
+cmake --install . --config Release
+验证安装
+安装成功后，重新配置项目应该看到：'><meta name=author content="bingyi-tian"><link rel=canonical href=https://bingyi-tian.github.io/post/cgal%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.b489a6d73b9d5f542e10296b5fbfe24c07a73618c7ca7efba908fadedc6200f9.css integrity="sha256-tImm1zudX1QuEClrX7/iTAenNhjHyn77qQj63txiAPk=" rel="preload stylesheet" as=style><link rel=icon href=https://bingyi-tian.github.io/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://bingyi-tian.github.io/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://bingyi-tian.github.io/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://bingyi-tian.github.io/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://bingyi-tian.github.io/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://bingyi-tian.github.io/post/cgal%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://bingyi-tian.github.io/post/cgal%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"><meta property="og:site_name" content="wood"><meta property="og:title" content="Cgal配置教程"><meta property="og:description" content='先安装ceres:
+基于官方文档，我为你推荐最简单实用的安装方案：
+方案1：使用vcpkg一键安装（强烈推荐） 这是最省心的方法，适合99%的用户：
+步骤1：安装vcpkg # 在合适的位置（如D盘根目录）打开PowerShellgit clone https://github.com/Microsoft/vcpkg.gitcd vcpkg.\bootstrap-vcpkg.bat.\vcpkg integrate install 步骤2：安装Ceres及所有依赖 # 安装基础版本（推荐）.\vcpkg.exe install ceres:x64-windows# 或者安装包含SuiteSparse的完整版本.\vcpkg.exe install ceres[suitesparse]:x64-windows 步骤3：配置你的CGAL项目 cd 你的项目目录cmake -DCMAKE_BUILD_TYPE=Release ^-DCGAL_DIR="D:\VisualStudio\Source\cgal\cgal\cgal" ^-DCMAKE_TOOLCHAIN_FILE="D:\vcpkg\scripts\buildsystems\vcpkg.cmake" ^../.. 方案2：手动编译（仅限特殊情况） 只有在需要特定版本或自定义配置时才用此方法：
+步骤1：安装依赖 # 先用vcpkg安装依赖（这样最简单）.\vcpkg.exe install eigen3 glog gflags:x64-windows 步骤2：编译Ceres git clone https://github.com/ceres-solver/ceres-solver.gitcd ceres-solvermkdir buildcd build# 配置（替换为你的实际路径）cmake .. ^-DCMAKE_INSTALL_PREFIX="D:\Libraries\ceres" ^-DEigen3_DIR="D:\vcpkg\installed\x64-windows\share\eigen3" ^-Dglog_DIR="D:\vcpkg\installed\x64-windows\share\glog" ^-Dgflags_DIR="D:\vcpkg\installed\x64-windows\share\gflags" ^-G "Visual Studio 17 2022" -A x64cmake --build . --config Releasecmake --install . --config Release 验证安装 安装成功后，重新配置项目应该看到：'><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-11-16T15:01:36+08:00"><meta property="article:modified_time" content="2025-11-16T15:01:36+08:00"><meta property="og:image" content="https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="Cgal配置教程"><meta name=twitter:description content='先安装ceres:
+基于官方文档，我为你推荐最简单实用的安装方案：
+方案1：使用vcpkg一键安装（强烈推荐）
+这是最省心的方法，适合99%的用户：
+步骤1：安装vcpkg
+# 在合适的位置（如D盘根目录）打开PowerShell
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+.\bootstrap-vcpkg.bat
+.\vcpkg integrate install
+步骤2：安装Ceres及所有依赖
+# 安装基础版本（推荐）
+.\vcpkg.exe install ceres:x64-windows
+
+# 或者安装包含SuiteSparse的完整版本
+.\vcpkg.exe install ceres[suitesparse]:x64-windows
+步骤3：配置你的CGAL项目
+cd 你的项目目录
+cmake -DCMAKE_BUILD_TYPE=Release ^
+      -DCGAL_DIR="D:\VisualStudio\Source\cgal\cgal\cgal" ^
+      -DCMAKE_TOOLCHAIN_FILE="D:\vcpkg\scripts\buildsystems\vcpkg.cmake" ^
+      ../..
+方案2：手动编译（仅限特殊情况）
+只有在需要特定版本或自定义配置时才用此方法：
+步骤1：安装依赖
+# 先用vcpkg安装依赖（这样最简单）
+.\vcpkg.exe install eigen3 glog gflags:x64-windows
+步骤2：编译Ceres
+git clone https://github.com/ceres-solver/ceres-solver.git
+cd ceres-solver
+mkdir build
+cd build
+
+# 配置（替换为你的实际路径）
+cmake .. ^
+    -DCMAKE_INSTALL_PREFIX="D:\Libraries\ceres" ^
+    -DEigen3_DIR="D:\vcpkg\installed\x64-windows\share\eigen3" ^
+    -Dglog_DIR="D:\vcpkg\installed\x64-windows\share\glog" ^
+    -Dgflags_DIR="D:\vcpkg\installed\x64-windows\share\gflags" ^
+    -G "Visual Studio 17 2022" -A x64
+
+cmake --build . --config Release
+cmake --install . --config Release
+验证安装
+安装成功后，重新配置项目应该看到：'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://bingyi-tian.github.io/post/"},{"@type":"ListItem","position":2,"name":"Cgal配置教程","item":"https://bingyi-tian.github.io/post/cgal%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Cgal配置教程","name":"Cgal配置教程","description":"先安装ceres:\n基于官方文档，我为你推荐最简单实用的安装方案：\n方案1：使用vcpkg一键安装（强烈推荐） 这是最省心的方法，适合99%的用户：\n步骤1：安装vcpkg # 在合适的位置（如D盘根目录）打开PowerShell\rgit clone https://github.com/Microsoft/vcpkg.git\rcd vcpkg\r.\\bootstrap-vcpkg.bat\r.\\vcpkg integrate install 步骤2：安装Ceres及所有依赖 # 安装基础版本（推荐）\r.\\vcpkg.exe install ceres:x64-windows\r# 或者安装包含SuiteSparse的完整版本\r.\\vcpkg.exe install ceres[suitesparse]:x64-windows 步骤3：配置你的CGAL项目 cd 你的项目目录\rcmake -DCMAKE_BUILD_TYPE=Release ^\r-DCGAL_DIR=\u0026#34;D:\\VisualStudio\\Source\\cgal\\cgal\\cgal\u0026#34; ^\r-DCMAKE_TOOLCHAIN_FILE=\u0026#34;D:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake\u0026#34; ^\r../.. 方案2：手动编译（仅限特殊情况） 只有在需要特定版本或自定义配置时才用此方法：\n步骤1：安装依赖 # 先用vcpkg安装依赖（这样最简单）\r.\\vcpkg.exe install eigen3 glog gflags:x64-windows 步骤2：编译Ceres git clone https://github.com/ceres-solver/ceres-solver.git\rcd ceres-solver\rmkdir build\rcd build\r# 配置（替换为你的实际路径）\rcmake .. ^\r-DCMAKE_INSTALL_PREFIX=\u0026#34;D:\\Libraries\\ceres\u0026#34; ^\r-DEigen3_DIR=\u0026#34;D:\\vcpkg\\installed\\x64-windows\\share\\eigen3\u0026#34; ^\r-Dglog_DIR=\u0026#34;D:\\vcpkg\\installed\\x64-windows\\share\\glog\u0026#34; ^\r-Dgflags_DIR=\u0026#34;D:\\vcpkg\\installed\\x64-windows\\share\\gflags\u0026#34; ^\r-G \u0026#34;Visual Studio 17 2022\u0026#34; -A x64\rcmake --build . --config Release\rcmake --install . --config Release 验证安装 安装成功后，重新配置项目应该看到：\n","keywords":["",""],"articleBody":"先安装ceres:\n基于官方文档，我为你推荐最简单实用的安装方案：\n方案1：使用vcpkg一键安装（强烈推荐） 这是最省心的方法，适合99%的用户：\n步骤1：安装vcpkg # 在合适的位置（如D盘根目录）打开PowerShell\rgit clone https://github.com/Microsoft/vcpkg.git\rcd vcpkg\r.\\bootstrap-vcpkg.bat\r.\\vcpkg integrate install 步骤2：安装Ceres及所有依赖 # 安装基础版本（推荐）\r.\\vcpkg.exe install ceres:x64-windows\r# 或者安装包含SuiteSparse的完整版本\r.\\vcpkg.exe install ceres[suitesparse]:x64-windows 步骤3：配置你的CGAL项目 cd 你的项目目录\rcmake -DCMAKE_BUILD_TYPE=Release ^\r-DCGAL_DIR=\"D:\\VisualStudio\\Source\\cgal\\cgal\\cgal\" ^\r-DCMAKE_TOOLCHAIN_FILE=\"D:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake\" ^\r../.. 方案2：手动编译（仅限特殊情况） 只有在需要特定版本或自定义配置时才用此方法：\n步骤1：安装依赖 # 先用vcpkg安装依赖（这样最简单）\r.\\vcpkg.exe install eigen3 glog gflags:x64-windows 步骤2：编译Ceres git clone https://github.com/ceres-solver/ceres-solver.git\rcd ceres-solver\rmkdir build\rcd build\r# 配置（替换为你的实际路径）\rcmake .. ^\r-DCMAKE_INSTALL_PREFIX=\"D:\\Libraries\\ceres\" ^\r-DEigen3_DIR=\"D:\\vcpkg\\installed\\x64-windows\\share\\eigen3\" ^\r-Dglog_DIR=\"D:\\vcpkg\\installed\\x64-windows\\share\\glog\" ^\r-Dgflags_DIR=\"D:\\vcpkg\\installed\\x64-windows\\share\\gflags\" ^\r-G \"Visual Studio 17 2022\" -A x64\rcmake --build . --config Release\rcmake --install . --config Release 验证安装 安装成功后，重新配置项目应该看到：\n-- Found Ceres: ... (found version 2.1.0)\r-- Examples that use the Ceres library will be compiled. 重要建议 1.\n首选vcpkg：避免手动处理依赖关系的噩梦\n2.\n使用Release模式：Debug模式性能差，且CGAL会警告\n3.\n集成到VS：运行 vcpkg integrate install让Visual Studio自动找到库\n4.\n64位系统：始终使用 x64-windows架构\n如果遇到问题 # 清理重装\rvcpkg remove ceres\rvcpkg install ceres:x64-windows\r# 更新vcpkg\rgit pull\r.\\bootstrap-vcpkg.bat 总结：直接使用方案1的vcpkg方法，这是最可靠且官方推荐的方式。手动编译只有在极端特殊需求时才需要考虑。\n进入到example中，cmake命令：\ncmake -DCMAKE_BUILD_TYPE=Debug -DCGAL_DIR=\"D:\\VisualStudio\\Source\\cgal\\cgal\\cgal\" -DCMAKE_TOOLCHAIN_FILE=\"D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake\" -DEigen3_DIR=\"D:\\VisualStudio\\Source\\cgal\\Third_Party\\eigen3\\eigen3\" ../.. 如果想要只生成一个example中的一个解决方案的解决方案，就把他设置成启动项，然后右键生成\n然后报错找不到eigen3里面的头文件：\n使用vcpkg安装Eigen 由于您使用了vcpkg，确保Eigen已安装：\ncd \"D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\\vcpkg\"\r.\\vcpkg install eigen3 然后重新编译cmake\ncmake -DCMAKE_BUILD_TYPE=Debug -DCGAL_DIR=\"D:\\VisualStudio\\Source\\cgal\\cgal\\cgal\" -DCMAKE_TOOLCHAIN_FILE=\"D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake\" ../.. 编译成功，但是没有解决这个问题，这个问题是路径问题：\n修正方法：\n修改CMakeLists.txt（推荐） 在你的CMakeLists.txt中添加Eigen3的头文件路径：\n# 在find_package(Eigen3)之后添加\rif(Eigen3_FOUND)\r# 添加Eigen3的头文件路径\rinclude_directories(${EIGEN3_INCLUDE_DIR})\r# 或者如果你使用target的方式\r# target_include_directories(your_target_name PRIVATE ${EIGEN3_INCLUDE_DIR})\rendif() 实际cmake代码：\nfind_package(Eigen3 3.2.0 QUIET) #(requires 3.2.0 or greater)\rmessage(STATUS \"Eigen3_FOUND: ${Eigen3_FOUND}\")\rinclude_directories(${EIGEN3_INCLUDE_DIR})\rmessage(STATUS \"EIGEN3_INCLUDE_DIR: ${EIGEN3_INCLUDE_DIR}\")\rinclude(CGAL_Eigen3_support)\rif(TARGET CGAL::Eigen3_support) 成功！\n以后编译的话，多用vcpkg下载包，下载之后，cmake的时候指定工具链\n切记最后改一下cmakelists，包含一下文件的头文件\n日志部分 ceres真实安装日志：\nWindows PowerShell\r版权所有（C） Microsoft Corporation。保留所有权利。\r安装最新的 PowerShell，了解新功能和改进！https://aka.ms/PSWindows\r加载个人及系统配置文件用了 510 毫秒。\r(base) PS D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\u003e git clone https://github.com/Microsoft/vcpkg.git\rCloning into 'vcpkg'...\rremote: Enumerating objects: 293281, done.\rremote: Counting objects: 100% (4/4), done.\rremote: Compressing objects: 100% (4/4), done.\rremote: Total 293281 (delta 0), reused 0 (delta 0), pack-reused 293277 (from 2)\rReceiving objects: 100% (293281/293281), 91.67 MiB | 4.86 MiB/s, done.\rResolving deltas: 100% (196576/196576), done.\rUpdating files: 100% (13090/13090), done.\r(base) PS D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\u003e cd vcpkg\r(base) PS D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\\vcpkg\u003e .\\bootstrap-vcpkg.bat\rDownloading https://github.com/microsoft/vcpkg-tool/releases/download/2025-10-16/vcpkg.exe -\u003e D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\\vcpkg\\vcpkg.exe (using IE proxy: 127.0.0.1:7897)... done.\rValidating signature... done.\rvcpkg package management program version 2025-10-16-71538f2694db93da4668782d094768ba74c45991\rSee LICENSE.txt for license information.\rTelemetry\r---------\rvcpkg collects usage data in order to help us improve your experience.\rThe data collected by Microsoft is anonymous.\rYou can opt-out of telemetry by re-running the bootstrap-vcpkg script with -disableMetrics,\rpassing --disable-metrics to vcpkg on the command line,\ror by setting the VCPKG_DISABLE_METRICS environment variable.\rRead more about vcpkg telemetry at docs/about/privacy.md\r(base) PS D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\\vcpkg\u003e .\\vcpkg integrate install\rApplied user-wide integration for this vcpkg root.\rCMake projects should use: \"-DCMAKE_TOOLCHAIN_FILE=D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/scripts/buildsystems/vcpkg.cmake\"\rAll MSBuild C++ projects can now #include any installed libraries. Linking will be handled automatically. Installing new libraries will make them instantly available.\r(base) PS D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\\vcpkg\u003e .\\vcpkg.exe install ceres:x64-windows\rComputing installation plan...\rThe following packages will be built and installed:\rceres:x64-windows@2.2.0#5\r* eigen3:x64-windows@3.4.1#1\r* gflags:x64-windows@2.2.2#9\r* glog:x64-windows@0.7.1\r* vcpkg-cmake:x64-windows@2024-04-23\r* vcpkg-cmake-config:x64-windows@2024-05-23\rAdditional packages (*) will be modified to complete this operation.\rDetecting compiler hash for triplet x64-windows...\r-- Automatically setting %HTTP(S)_PROXY% environment variables to \"127.0.0.1:7897\".\rCompiler found: D:/VisualStudio/VisualStudio/2022/community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe\rA suitable version of 7zip was not found (required v25.1.0).\rDownloading https://github.com/ip7z/7zip/releases/download/25.01/7z2501.exe -\u003e 7z2501.7z.exe\rSuccessfully downloaded 7z2501.7z.exe\rExtracting 7zip...\rA suitable version of 7zr was not found (required v25.1.0).\rDownloading https://github.com/ip7z/7zip/releases/download/25.01/7zr.exe -\u003e 7d84fcad-7zr.exe\rSuccessfully downloaded 7d84fcad-7zr.exe\rRestored 0 package(s) from C:\\Users\\Administrator\\AppData\\Local\\vcpkg\\archives in 87.3 us. Use --debug to see more details.\rInstalling 1/6 vcpkg-cmake:x64-windows@2024-04-23...\rBuilding vcpkg-cmake:x64-windows@2024-04-23...\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_configure.cmake\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_build.cmake\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_install.cmake\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg-port-config.cmake\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/copyright\r-- Performing post-build validation\rStarting submission of vcpkg-cmake:x64-windows@2024-04-23 to 1 binary cache(s) in the background\rElapsed time to handle vcpkg-cmake:x64-windows: 41 ms\rvcpkg-cmake:x64-windows package ABI: ade78fca9f99770eea7e6b6190d64a9740445ad0ee86eb0e1d78d40ce11af42c\rInstalling 2/6 vcpkg-cmake-config:x64-windows@2024-05-23...\rBuilding vcpkg-cmake-config:x64-windows@2024-05-23...\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/vcpkg-port-config.cmake\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/copyright\r-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE\rStarting submission of vcpkg-cmake-config:x64-windows@2024-05-23 to 1 binary cache(s) in the background\rElapsed time to handle vcpkg-cmake-config:x64-windows: 34.8 ms\rvcpkg-cmake-config:x64-windows package ABI: d0d523f423055780d14dd2f12dab989b51d5294c3bb7e07f5c220a6266a95b6e\rInstalling 3/6 eigen3:x64-windows@3.4.1#1...\rBuilding eigen3:x64-windows@3.4.1#1...\rCMake Warning at scripts/cmake/vcpkg_buildpath_length_warning.cmake:4 (message):\reigen3's buildsystem uses very long paths and may fail on your system.\rWe recommend moving vcpkg to a short path such as 'C:\\src\\vcpkg' or using\rthe subst command.\rCall Stack (most recent call first):\rports/eigen3/portfile.cmake:1 (vcpkg_buildpath_length_warning)\rscripts/ports.cmake:206 (include)\rDownloading https://gitlab.com/libeigen/eigen/-/archive/3.4.1/eigen-3.4.1.tar.gz -\u003e libeigen-eigen-3.4.1.tar.gz\rSuccessfully downloaded libeigen-eigen-3.4.1.tar.gz\r-- Extracting source D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/libeigen-eigen-3.4.1.tar.gz\r-- Using source at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/buildtrees/eigen3/src/3.4.1-0ff0cf177d.clean\r-- Configuring x64-windows\r-- Building x64-windows-dbg\r-- Building x64-windows-rel\r-- Fixing pkgconfig file: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/eigen3_x64-windows/lib/pkgconfig/eigen3.pc\rDownloading msys2-mingw-w64-x86_64-pkgconf-1~2.4.3-1-any.pkg.tar.zst, trying https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-pkgconf-1~2.4.3-1-any.pkg.tar.zst\rSuccessfully downloaded msys2-mingw-w64-x86_64-pkgconf-1~2.4.3-1-any.pkg.tar.zst\rDownloading msys2-msys2-runtime-3.6.2-2-x86_64.pkg.tar.zst, trying https://mirror.msys2.org/msys/x86_64/msys2-runtime-3.6.2-2-x86_64.pkg.tar.zst\rSuccessfully downloaded msys2-msys2-runtime-3.6.2-2-x86_64.pkg.tar.zst\r-- Using msys root at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/tools/msys2/9272adbcaf19caef\r-- Fixing pkgconfig file: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/eigen3_x64-windows/debug/lib/pkgconfig/eigen3.pc\r-- Performing post-build validation\rStarting submission of eigen3:x64-windows@3.4.1#1 to 1 binary cache(s) in the background\rElapsed time to handle eigen3:x64-windows: 17 s\reigen3:x64-windows package ABI: 919fec9c262ae7a61748b5a452ea279dd4ee673d6bc3da3ed85229e316e0992d\rCompleted submission of vcpkg-cmake:x64-windows@2024-04-23 to 1 binary cache(s) in 79.7 ms\rCompleted submission of vcpkg-cmake-config:x64-windows@2024-05-23 to 1 binary cache(s) in 24.1 ms\rInstalling 4/6 gflags:x64-windows@2.2.2#9...\rBuilding gflags:x64-windows@2.2.2#9...\rDownloading https://github.com/gflags/gflags/archive/v2.2.2.tar.gz -\u003e gflags-gflags-v2.2.2.tar.gz\rSuccessfully downloaded gflags-gflags-v2.2.2.tar.gz\r-- Extracting source D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/gflags-gflags-v2.2.2.tar.gz\r-- Applying patch 0001-patch-dir.patch\r-- Applying patch fix_cmake_config.patch\r-- Using source at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/buildtrees/gflags/src/v2.2.2-d9283b9285.clean\r-- Configuring x64-windows\r-- Building x64-windows-dbg\r-- Building x64-windows-rel\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/gflags_x64-windows/share/gflags/vcpkg-cmake-wrapper.cmake\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/gflags_x64-windows/share/gflags/usage\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/gflags_x64-windows/share/gflags/copyright\r-- Performing post-build validation\rStarting submission of gflags:x64-windows@2.2.2#9 to 1 binary cache(s) in the background\rElapsed time to handle gflags:x64-windows: 10 s\rgflags:x64-windows package ABI: 8459c63a57095ebb7714e4151adb13fc5488963ed2d42c1767234642fd3cab2f\rCompleted submission of eigen3:x64-windows@3.4.1#1 to 1 binary cache(s) in 220 ms\rInstalling 5/6 glog:x64-windows@0.7.1...\rBuilding glog:x64-windows@0.7.1...\rDownloading https://github.com/google/glog/archive/v0.7.1.tar.gz -\u003e google-glog-v0.7.1.tar.gz\rSuccessfully downloaded google-glog-v0.7.1.tar.gz\r-- Extracting source D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/google-glog-v0.7.1.tar.gz\r-- Applying patch fix_glog_CMAKE_MODULE_PATH.patch\r-- Applying patch glog_disable_debug_postfix.patch\r-- Applying patch fix_crosscompile_symbolize.patch\r-- Applying patch fix_cplusplus_macro.patch\r-- Using source at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/buildtrees/glog/src/v0.7.1-795557b621.clean\r-- Configuring x64-windows\rCMake Warning at installed/x64-windows/share/vcpkg-cmake/vcpkg_cmake_configure.cmake:344 (message):\rThe following variables are not used in CMakeLists.txt:\rWITH_CUSTOM_PREFIX\rPlease recheck them and remove the unnecessary options from the\r`vcpkg_cmake_configure` call.\rIf these options should still be passed for whatever reason, please use the\r`MAYBE_UNUSED_VARIABLES` argument.\rCall Stack (most recent call first):\rports/glog/portfile.cmake:24 (vcpkg_cmake_configure)\rscripts/ports.cmake:206 (include)\r-- Building x64-windows-dbg\r-- Building x64-windows-rel\r-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~2.4.3-1-any.pkg.tar.zst\r-- Using cached msys2-msys2-runtime-3.6.2-2-x86_64.pkg.tar.zst\r-- Using msys root at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/tools/msys2/9272adbcaf19caef\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/glog_x64-windows/share/glog/copyright\r-- Performing post-build validation\rStarting submission of glog:x64-windows@0.7.1 to 1 binary cache(s) in the background\rElapsed time to handle glog:x64-windows: 14 s\rglog:x64-windows package ABI: 0434af1267a67b3d1a2be1aee13958681a408f9e72ea76955b5936b313c6cade\rCompleted submission of gflags:x64-windows@2.2.2#9 to 1 binary cache(s) in 423 ms\rInstalling 6/6 ceres:x64-windows@2.2.0#5...\rBuilding ceres:x64-windows@2.2.0#5...\rDownloading https://github.com/ceres-solver/ceres-solver/archive/85331393dc0dff09f6fb9903ab0c4bfa3e134b01.tar.gz -\u003e ceres-solver-ceres-solver-85331393dc0dff09f6fb9903ab0c4bfa3e134b01.tar.gz\rSuccessfully downloaded ceres-solver-ceres-solver-85331393dc0dff09f6fb9903ab0c4bfa3e134b01.tar.gz\r-- Extracting source D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/ceres-solver-ceres-solver-85331393dc0dff09f6fb9903ab0c4bfa3e134b01.tar.gz\r-- Applying patch 0001_cmakelists_fixes.patch\r-- Applying patch 0004_remove_broken_fake_ba_jac.patch\r-- Applying patch 0005_link_cuda_static.patch\r-- Applying patch 0006_fix_cuda_architectures.patch\r-- Applying patch 0007_support_cuda_13.patch\r-- Using source at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/buildtrees/ceres/src/fa3e134b01-7e5d31decb.clean\r-- Configuring x64-windows\r-- Building x64-windows-dbg\r-- Building x64-windows-rel\r-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/ceres_x64-windows/share/ceres/copyright\r-- Performing post-build validation\rStarting submission of ceres:x64-windows@2.2.0#5 to 1 binary cache(s) in the background\rElapsed time to handle ceres:x64-windows: 1.7 min\rceres:x64-windows package ABI: 50716300293dde0c49effe9da3d02796ffa0a7e23609e30caaac36da43f75986\rTotal install time: 2.4 min\rInstalled contents are licensed to you by owners. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.\rPackages installed in this vcpkg installation declare the following licenses:\rApache-2.0\rBSD-3-Clause\rMIT\rMPL-2.0\rceres provides CMake targets:\r# this is heuristically generated, and may not be correct\rfind_package(Ceres CONFIG REQUIRED)\rtarget_link_libraries(main PRIVATE Ceres::ceres)\rCompleted submission of glog:x64-windows@0.7.1 to 1 binary cache(s) in 493 ms\rWaiting for 1 remaining binary cache submissions...\rCompleted submission of ceres:x64-windows@2.2.0#5 to 1 binary cache(s) in 17 s (1/1)\rAll requested installations completed successfully in: 2.4 min\r(base) PS D:\\VisualStudio\\Source\\cgal\\Third_Party\\vcpkg\\vcpkg\u003e ","wordCount":"1156","inLanguage":"en","image":"https://bingyi-tian.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2025-11-16T15:01:36+08:00","dateModified":"2025-11-16T15:01:36+08:00","author":{"@type":"Person","name":"bingyi-tian"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://bingyi-tian.github.io/post/cgal%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"},"publisher":{"@type":"Organization","name":"wood","logo":{"@type":"ImageObject","url":"https://bingyi-tian.github.io/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://bingyi-tian.github.io/ accesskey=h title="Home (Alt + H)"><img src=https://bingyi-tian.github.io/apple-touch-icon.png alt aria-label=logo height=35>Home</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://bingyi-tian.github.io/categories/ title=categories><span>categories</span></a></li><li><a href=https://bingyi-tian.github.io/tags/ title=tags><span>tags</span></a></li><li><a href=https://example.org title=example.org><span>example.org</span>&nbsp;
+<svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://bingyi-tian.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://bingyi-tian.github.io/post/>Posts</a></div><h1 class="post-title entry-hint-parent">Cgal配置教程</h1><div class=post-meta><span title='2025-11-16 15:01:36 +0800 CST'>November 16, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1156 words&nbsp;·&nbsp;bingyi-tian&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/post/cgal%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b.md rel="noopener noreferrer edit" target=_blank>Suggest Changes</a></div></header><div class=post-content><p>先安装ceres:</p><p>基于官方文档，我为你推荐<strong>最简单实用的安装方案</strong>：</p><h2 id=方案1使用vcpkg一键安装强烈推荐>方案1：使用vcpkg一键安装（强烈推荐）<a hidden class=anchor aria-hidden=true href=#方案1使用vcpkg一键安装强烈推荐>#</a></h2><p>这是最省心的方法，适合99%的用户：</p><h3 id=步骤1安装vcpkg>步骤1：安装vcpkg<a hidden class=anchor aria-hidden=true href=#步骤1安装vcpkg>#</a></h3><pre tabindex=0><code># 在合适的位置（如D盘根目录）打开PowerShell
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+.\bootstrap-vcpkg.bat
+.\vcpkg integrate install
+</code></pre><h3 id=步骤2安装ceres及所有依赖>步骤2：安装Ceres及所有依赖<a hidden class=anchor aria-hidden=true href=#步骤2安装ceres及所有依赖>#</a></h3><pre tabindex=0><code># 安装基础版本（推荐）
+.\vcpkg.exe install ceres:x64-windows
+
+# 或者安装包含SuiteSparse的完整版本
+.\vcpkg.exe install ceres[suitesparse]:x64-windows
+</code></pre><h3 id=步骤3配置你的cgal项目>步骤3：配置你的CGAL项目<a hidden class=anchor aria-hidden=true href=#步骤3配置你的cgal项目>#</a></h3><pre tabindex=0><code>cd 你的项目目录
+cmake -DCMAKE_BUILD_TYPE=Release ^
+      -DCGAL_DIR=&#34;D:\VisualStudio\Source\cgal\cgal\cgal&#34; ^
+      -DCMAKE_TOOLCHAIN_FILE=&#34;D:\vcpkg\scripts\buildsystems\vcpkg.cmake&#34; ^
+      ../..
+</code></pre><h2 id=方案2手动编译仅限特殊情况>方案2：手动编译（仅限特殊情况）<a hidden class=anchor aria-hidden=true href=#方案2手动编译仅限特殊情况>#</a></h2><p>只有在需要特定版本或自定义配置时才用此方法：</p><h3 id=步骤1安装依赖>步骤1：安装依赖<a hidden class=anchor aria-hidden=true href=#步骤1安装依赖>#</a></h3><pre tabindex=0><code># 先用vcpkg安装依赖（这样最简单）
+.\vcpkg.exe install eigen3 glog gflags:x64-windows
+</code></pre><h3 id=步骤2编译ceres>步骤2：编译Ceres<a hidden class=anchor aria-hidden=true href=#步骤2编译ceres>#</a></h3><pre tabindex=0><code>git clone https://github.com/ceres-solver/ceres-solver.git
+cd ceres-solver
+mkdir build
+cd build
+
+# 配置（替换为你的实际路径）
+cmake .. ^
+    -DCMAKE_INSTALL_PREFIX=&#34;D:\Libraries\ceres&#34; ^
+    -DEigen3_DIR=&#34;D:\vcpkg\installed\x64-windows\share\eigen3&#34; ^
+    -Dglog_DIR=&#34;D:\vcpkg\installed\x64-windows\share\glog&#34; ^
+    -Dgflags_DIR=&#34;D:\vcpkg\installed\x64-windows\share\gflags&#34; ^
+    -G &#34;Visual Studio 17 2022&#34; -A x64
+
+cmake --build . --config Release
+cmake --install . --config Release
+</code></pre><h2 id=验证安装>验证安装<a hidden class=anchor aria-hidden=true href=#验证安装>#</a></h2><p>安装成功后，重新配置项目应该看到：</p><pre tabindex=0><code>-- Found Ceres: ... (found version 2.1.0)
+-- Examples that use the Ceres library will be compiled.
+</code></pre><h2 id=重要建议>重要建议<a hidden class=anchor aria-hidden=true href=#重要建议>#</a></h2><ol><li><p>1.</p><p><strong>首选vcpkg</strong>：避免手动处理依赖关系的噩梦</p></li><li><p>2.</p><p><strong>使用Release模式</strong>：Debug模式性能差，且CGAL会警告</p></li><li><p>3.</p><p><strong>集成到VS</strong>：运行 <code>vcpkg integrate install</code>让Visual Studio自动找到库</p></li><li><p>4.</p><p><strong>64位系统</strong>：始终使用 <code>x64-windows</code>架构</p></li></ol><h2 id=如果遇到问题>如果遇到问题<a hidden class=anchor aria-hidden=true href=#如果遇到问题>#</a></h2><pre tabindex=0><code># 清理重装
+vcpkg remove ceres
+vcpkg install ceres:x64-windows
+
+# 更新vcpkg
+git pull
+.\bootstrap-vcpkg.bat
+</code></pre><p><strong>总结</strong>：直接使用方案1的vcpkg方法，这是最可靠且官方推荐的方式。手动编译只有在极端特殊需求时才需要考虑。</p><p>进入到example中，cmake命令：</p><pre tabindex=0><code>cmake -DCMAKE_BUILD_TYPE=Debug       -DCGAL_DIR=&#34;D:\VisualStudio\Source\cgal\cgal\cgal&#34;       -DCMAKE_TOOLCHAIN_FILE=&#34;D:\VisualStudio\Source\cgal\Third_Party\vcpkg\vcpkg\scripts\buildsystems\vcpkg.cmake&#34;       -DEigen3_DIR=&#34;D:\VisualStudio\Source\cgal\Third_Party\eigen3\eigen3&#34;       ../..
+</code></pre><p>如果想要只生成一个example中的一个解决方案的解决方案，就把他设置成启动项，然后右键生成</p><p>然后报错找不到eigen3里面的头文件：</p><p><img alt=image-20251117102726361 loading=lazy src=c:\\Users\\Administrator\\Desktop\\blog\\bingyi-tian.github.io\\content\\post\\image\\cgal配置教程\\image-20251117102726361.png></p><h2 id=使用vcpkg安装eigen>使用vcpkg安装Eigen<a hidden class=anchor aria-hidden=true href=#使用vcpkg安装eigen>#</a></h2><p>由于您使用了vcpkg，确保Eigen已安装：</p><pre tabindex=0><code>cd &#34;D:\VisualStudio\Source\cgal\Third_Party\vcpkg\vcpkg&#34;
+.\vcpkg install eigen3
+</code></pre><p>然后重新编译cmake</p><pre tabindex=0><code>cmake -DCMAKE_BUILD_TYPE=Debug       -DCGAL_DIR=&#34;D:\VisualStudio\Source\cgal\cgal\cgal&#34;       -DCMAKE_TOOLCHAIN_FILE=&#34;D:\VisualStudio\Source\cgal\Third_Party\vcpkg\vcpkg\scripts\buildsystems\vcpkg.cmake&#34;         ../..
+</code></pre><p>编译成功，但是没有解决这个问题，这个问题是路径问题：</p><p>修正方法：</p><h3 id=修改cmakeliststxt推荐>修改CMakeLists.txt（推荐）<a hidden class=anchor aria-hidden=true href=#修改cmakeliststxt推荐>#</a></h3><p>在你的CMakeLists.txt中添加Eigen3的头文件路径：</p><pre tabindex=0><code># 在find_package(Eigen3)之后添加
+if(Eigen3_FOUND)
+    # 添加Eigen3的头文件路径
+    include_directories(${EIGEN3_INCLUDE_DIR})
+    
+    # 或者如果你使用target的方式
+    # target_include_directories(your_target_name PRIVATE ${EIGEN3_INCLUDE_DIR})
+endif()
+</code></pre><p>实际cmake代码：</p><pre tabindex=0><code>find_package(Eigen3 3.2.0 QUIET) #(requires 3.2.0 or greater)
+message(STATUS &#34;Eigen3_FOUND: ${Eigen3_FOUND}&#34;)
+include_directories(${EIGEN3_INCLUDE_DIR})
+message(STATUS &#34;EIGEN3_INCLUDE_DIR: ${EIGEN3_INCLUDE_DIR}&#34;)
+include(CGAL_Eigen3_support)
+if(TARGET CGAL::Eigen3_support)
+</code></pre><p>成功！</p><p>以后编译的话，多用vcpkg下载包，下载之后，cmake的时候指定工具链</p><p>切记最后改一下cmakelists，包含一下文件的头文件</p><h1 id=日志部分>日志部分<a hidden class=anchor aria-hidden=true href=#日志部分>#</a></h1><p>ceres真实安装日志：</p><pre tabindex=0><code>Windows PowerShell
+版权所有（C） Microsoft Corporation。保留所有权利。
+
+安装最新的 PowerShell，了解新功能和改进！https://aka.ms/PSWindows
+
+加载个人及系统配置文件用了 510 毫秒。
+(base) PS D:\VisualStudio\Source\cgal\Third_Party\vcpkg&gt; git clone https://github.com/Microsoft/vcpkg.git
+Cloning into &#39;vcpkg&#39;...
+remote: Enumerating objects: 293281, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 293281 (delta 0), reused 0 (delta 0), pack-reused 293277 (from 2)
+Receiving objects: 100% (293281/293281), 91.67 MiB | 4.86 MiB/s, done.
+Resolving deltas: 100% (196576/196576), done.
+Updating files: 100% (13090/13090), done.
+(base) PS D:\VisualStudio\Source\cgal\Third_Party\vcpkg&gt; cd vcpkg
+(base) PS D:\VisualStudio\Source\cgal\Third_Party\vcpkg\vcpkg&gt; .\bootstrap-vcpkg.bat
+Downloading https://github.com/microsoft/vcpkg-tool/releases/download/2025-10-16/vcpkg.exe -&gt; D:\VisualStudio\Source\cgal\Third_Party\vcpkg\vcpkg\vcpkg.exe (using IE proxy: 127.0.0.1:7897)... done.
+Validating signature... done.
+
+vcpkg package management program version 2025-10-16-71538f2694db93da4668782d094768ba74c45991
+
+See LICENSE.txt for license information.
+Telemetry
+---------
+vcpkg collects usage data in order to help us improve your experience.
+The data collected by Microsoft is anonymous.
+You can opt-out of telemetry by re-running the bootstrap-vcpkg script with -disableMetrics,
+passing --disable-metrics to vcpkg on the command line,
+or by setting the VCPKG_DISABLE_METRICS environment variable.
+
+Read more about vcpkg telemetry at docs/about/privacy.md
+(base) PS D:\VisualStudio\Source\cgal\Third_Party\vcpkg\vcpkg&gt; .\vcpkg integrate install
+Applied user-wide integration for this vcpkg root.
+CMake projects should use: &#34;-DCMAKE_TOOLCHAIN_FILE=D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/scripts/buildsystems/vcpkg.cmake&#34;
+
+All MSBuild C++ projects can now #include any installed libraries. Linking will be handled automatically. Installing new libraries will make them instantly available.
+(base) PS D:\VisualStudio\Source\cgal\Third_Party\vcpkg\vcpkg&gt; .\vcpkg.exe install ceres:x64-windows
+Computing installation plan...
+The following packages will be built and installed:
+    ceres:x64-windows@2.2.0#5
+  * eigen3:x64-windows@3.4.1#1
+  * gflags:x64-windows@2.2.2#9
+  * glog:x64-windows@0.7.1
+  * vcpkg-cmake:x64-windows@2024-04-23
+  * vcpkg-cmake-config:x64-windows@2024-05-23
+Additional packages (*) will be modified to complete this operation.
+Detecting compiler hash for triplet x64-windows...
+-- Automatically setting %HTTP(S)_PROXY% environment variables to &#34;127.0.0.1:7897&#34;.
+Compiler found: D:/VisualStudio/VisualStudio/2022/community/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/cl.exe
+A suitable version of 7zip was not found (required v25.1.0).
+Downloading https://github.com/ip7z/7zip/releases/download/25.01/7z2501.exe -&gt; 7z2501.7z.exe
+Successfully downloaded 7z2501.7z.exe
+Extracting 7zip...
+A suitable version of 7zr was not found (required v25.1.0).
+Downloading https://github.com/ip7z/7zip/releases/download/25.01/7zr.exe -&gt; 7d84fcad-7zr.exe
+Successfully downloaded 7d84fcad-7zr.exe
+Restored 0 package(s) from C:\Users\Administrator\AppData\Local\vcpkg\archives in 87.3 us. Use --debug to see more details.
+Installing 1/6 vcpkg-cmake:x64-windows@2024-04-23...
+Building vcpkg-cmake:x64-windows@2024-04-23...
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_configure.cmake
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_build.cmake
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_install.cmake
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg-port-config.cmake
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/copyright
+-- Performing post-build validation
+Starting submission of vcpkg-cmake:x64-windows@2024-04-23 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake:x64-windows: 41 ms
+vcpkg-cmake:x64-windows package ABI: ade78fca9f99770eea7e6b6190d64a9740445ad0ee86eb0e1d78d40ce11af42c
+Installing 2/6 vcpkg-cmake-config:x64-windows@2024-05-23...
+Building vcpkg-cmake-config:x64-windows@2024-05-23...
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/vcpkg-port-config.cmake
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/copyright
+-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE
+Starting submission of vcpkg-cmake-config:x64-windows@2024-05-23 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake-config:x64-windows: 34.8 ms
+vcpkg-cmake-config:x64-windows package ABI: d0d523f423055780d14dd2f12dab989b51d5294c3bb7e07f5c220a6266a95b6e
+Installing 3/6 eigen3:x64-windows@3.4.1#1...
+Building eigen3:x64-windows@3.4.1#1...
+CMake Warning at scripts/cmake/vcpkg_buildpath_length_warning.cmake:4 (message):
+  eigen3&#39;s buildsystem uses very long paths and may fail on your system.
+
+  We recommend moving vcpkg to a short path such as &#39;C:\src\vcpkg&#39; or using
+  the subst command.
+Call Stack (most recent call first):
+  ports/eigen3/portfile.cmake:1 (vcpkg_buildpath_length_warning)
+  scripts/ports.cmake:206 (include)
+
+
+Downloading https://gitlab.com/libeigen/eigen/-/archive/3.4.1/eigen-3.4.1.tar.gz -&gt; libeigen-eigen-3.4.1.tar.gz
+Successfully downloaded libeigen-eigen-3.4.1.tar.gz
+-- Extracting source D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/libeigen-eigen-3.4.1.tar.gz
+-- Using source at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/buildtrees/eigen3/src/3.4.1-0ff0cf177d.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Fixing pkgconfig file: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/eigen3_x64-windows/lib/pkgconfig/eigen3.pc
+Downloading msys2-mingw-w64-x86_64-pkgconf-1~2.4.3-1-any.pkg.tar.zst, trying https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-pkgconf-1~2.4.3-1-any.pkg.tar.zst
+Successfully downloaded msys2-mingw-w64-x86_64-pkgconf-1~2.4.3-1-any.pkg.tar.zst
+Downloading msys2-msys2-runtime-3.6.2-2-x86_64.pkg.tar.zst, trying https://mirror.msys2.org/msys/x86_64/msys2-runtime-3.6.2-2-x86_64.pkg.tar.zst
+Successfully downloaded msys2-msys2-runtime-3.6.2-2-x86_64.pkg.tar.zst
+-- Using msys root at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/tools/msys2/9272adbcaf19caef
+-- Fixing pkgconfig file: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/eigen3_x64-windows/debug/lib/pkgconfig/eigen3.pc
+-- Performing post-build validation
+Starting submission of eigen3:x64-windows@3.4.1#1 to 1 binary cache(s) in the background
+Elapsed time to handle eigen3:x64-windows: 17 s
+eigen3:x64-windows package ABI: 919fec9c262ae7a61748b5a452ea279dd4ee673d6bc3da3ed85229e316e0992d
+Completed submission of vcpkg-cmake:x64-windows@2024-04-23 to 1 binary cache(s) in 79.7 ms
+Completed submission of vcpkg-cmake-config:x64-windows@2024-05-23 to 1 binary cache(s) in 24.1 ms
+Installing 4/6 gflags:x64-windows@2.2.2#9...
+Building gflags:x64-windows@2.2.2#9...
+Downloading https://github.com/gflags/gflags/archive/v2.2.2.tar.gz -&gt; gflags-gflags-v2.2.2.tar.gz
+Successfully downloaded gflags-gflags-v2.2.2.tar.gz
+-- Extracting source D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/gflags-gflags-v2.2.2.tar.gz
+-- Applying patch 0001-patch-dir.patch
+-- Applying patch fix_cmake_config.patch
+-- Using source at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/buildtrees/gflags/src/v2.2.2-d9283b9285.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/gflags_x64-windows/share/gflags/vcpkg-cmake-wrapper.cmake
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/gflags_x64-windows/share/gflags/usage
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/gflags_x64-windows/share/gflags/copyright
+-- Performing post-build validation
+Starting submission of gflags:x64-windows@2.2.2#9 to 1 binary cache(s) in the background
+Elapsed time to handle gflags:x64-windows: 10 s
+gflags:x64-windows package ABI: 8459c63a57095ebb7714e4151adb13fc5488963ed2d42c1767234642fd3cab2f
+Completed submission of eigen3:x64-windows@3.4.1#1 to 1 binary cache(s) in 220 ms
+Installing 5/6 glog:x64-windows@0.7.1...
+Building glog:x64-windows@0.7.1...
+Downloading https://github.com/google/glog/archive/v0.7.1.tar.gz -&gt; google-glog-v0.7.1.tar.gz
+Successfully downloaded google-glog-v0.7.1.tar.gz
+-- Extracting source D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/google-glog-v0.7.1.tar.gz
+-- Applying patch fix_glog_CMAKE_MODULE_PATH.patch
+-- Applying patch glog_disable_debug_postfix.patch
+-- Applying patch fix_crosscompile_symbolize.patch
+-- Applying patch fix_cplusplus_macro.patch
+-- Using source at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/buildtrees/glog/src/v0.7.1-795557b621.clean
+-- Configuring x64-windows
+CMake Warning at installed/x64-windows/share/vcpkg-cmake/vcpkg_cmake_configure.cmake:344 (message):
+  The following variables are not used in CMakeLists.txt:
+
+      WITH_CUSTOM_PREFIX
+
+  Please recheck them and remove the unnecessary options from the
+  `vcpkg_cmake_configure` call.
+
+  If these options should still be passed for whatever reason, please use the
+  `MAYBE_UNUSED_VARIABLES` argument.
+Call Stack (most recent call first):
+  ports/glog/portfile.cmake:24 (vcpkg_cmake_configure)
+  scripts/ports.cmake:206 (include)
+
+
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~2.4.3-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.6.2-2-x86_64.pkg.tar.zst
+-- Using msys root at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/tools/msys2/9272adbcaf19caef
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/glog_x64-windows/share/glog/copyright
+-- Performing post-build validation
+Starting submission of glog:x64-windows@0.7.1 to 1 binary cache(s) in the background
+Elapsed time to handle glog:x64-windows: 14 s
+glog:x64-windows package ABI: 0434af1267a67b3d1a2be1aee13958681a408f9e72ea76955b5936b313c6cade
+Completed submission of gflags:x64-windows@2.2.2#9 to 1 binary cache(s) in 423 ms
+Installing 6/6 ceres:x64-windows@2.2.0#5...
+Building ceres:x64-windows@2.2.0#5...
+Downloading https://github.com/ceres-solver/ceres-solver/archive/85331393dc0dff09f6fb9903ab0c4bfa3e134b01.tar.gz -&gt; ceres-solver-ceres-solver-85331393dc0dff09f6fb9903ab0c4bfa3e134b01.tar.gz
+Successfully downloaded ceres-solver-ceres-solver-85331393dc0dff09f6fb9903ab0c4bfa3e134b01.tar.gz
+-- Extracting source D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/downloads/ceres-solver-ceres-solver-85331393dc0dff09f6fb9903ab0c4bfa3e134b01.tar.gz
+-- Applying patch 0001_cmakelists_fixes.patch
+-- Applying patch 0004_remove_broken_fake_ba_jac.patch
+-- Applying patch 0005_link_cuda_static.patch
+-- Applying patch 0006_fix_cuda_architectures.patch
+-- Applying patch 0007_support_cuda_13.patch
+-- Using source at D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/buildtrees/ceres/src/fa3e134b01-7e5d31decb.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Installing: D:/VisualStudio/Source/cgal/Third_Party/vcpkg/vcpkg/packages/ceres_x64-windows/share/ceres/copyright
+-- Performing post-build validation
+Starting submission of ceres:x64-windows@2.2.0#5 to 1 binary cache(s) in the background
+Elapsed time to handle ceres:x64-windows: 1.7 min
+ceres:x64-windows package ABI: 50716300293dde0c49effe9da3d02796ffa0a7e23609e30caaac36da43f75986
+Total install time: 2.4 min
+Installed contents are licensed to you by owners. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
+Packages installed in this vcpkg installation declare the following licenses:
+Apache-2.0
+BSD-3-Clause
+MIT
+MPL-2.0
+ceres provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Ceres CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Ceres::ceres)
+
+Completed submission of glog:x64-windows@0.7.1 to 1 binary cache(s) in 493 ms
+Waiting for 1 remaining binary cache submissions...
+Completed submission of ceres:x64-windows@2.2.0#5 to 1 binary cache(s) in 17 s (1/1)
+All requested installations completed successfully in: 2.4 min
+(base) PS D:\VisualStudio\Source\cgal\Third_Party\vcpkg\vcpkg&gt;
+</code></pre></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://bingyi-tian.github.io/post/polygon_mesh_processing%E5%AD%A6%E4%B9%A0/><span class=title>« Prev</span><br><span>Polygon_Mesh_Processing学习</span>
+</a><a class=next href=https://bingyi-tian.github.io/post/%E8%BF%90%E8%A1%8C%E8%87%AA%E9%80%82%E5%BA%94%E5%8C%85%E9%9D%A2%E7%AE%97%E6%B3%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/><span class=title>Next »</span><br><span>运行自适应包面算法注意事项</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share Cgal配置教程 on x" href="https://x.com/intent/tweet/?text=Cgal%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b&amp;url=https%3a%2f%2fbingyi-tian.github.io%2fpost%2fcgal%25E9%2585%258D%25E7%25BD%25AE%25E6%2595%2599%25E7%25A8%258B%2f&amp;hashtags=%2c"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Cgal配置教程 on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fbingyi-tian.github.io%2fpost%2fcgal%25E9%2585%258D%25E7%25BD%25AE%25E6%2595%2599%25E7%25A8%258B%2f&amp;title=Cgal%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b&amp;summary=Cgal%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b&amp;source=https%3a%2f%2fbingyi-tian.github.io%2fpost%2fcgal%25E9%2585%258D%25E7%25BD%25AE%25E6%2595%2599%25E7%25A8%258B%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Cgal配置教程 on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fbingyi-tian.github.io%2fpost%2fcgal%25E9%2585%258D%25E7%25BD%25AE%25E6%2595%2599%25E7%25A8%258B%2f&title=Cgal%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Cgal配置教程 on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fbingyi-tian.github.io%2fpost%2fcgal%25E9%2585%258D%25E7%25BD%25AE%25E6%2595%2599%25E7%25A8%258B%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Cgal配置教程 on whatsapp" href="https://api.whatsapp.com/send?text=Cgal%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b%20-%20https%3a%2f%2fbingyi-tian.github.io%2fpost%2fcgal%25E9%2585%258D%25E7%25BD%25AE%25E6%2595%2599%25E7%25A8%258B%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Cgal配置教程 on telegram" href="https://telegram.me/share/url?text=Cgal%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b&amp;url=https%3a%2f%2fbingyi-tian.github.io%2fpost%2fcgal%25E9%2585%258D%25E7%25BD%25AE%25E6%2595%2599%25E7%25A8%258B%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentColor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Cgal配置教程 on ycombinator" href="https://news.ycombinator.com/submitlink?t=Cgal%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b&u=https%3a%2f%2fbingyi-tian.github.io%2fpost%2fcgal%25E9%2585%258D%25E7%25BD%25AE%25E6%2595%2599%25E7%25A8%258B%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://bingyi-tian.github.io/>wood</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
