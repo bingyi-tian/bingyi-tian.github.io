@@ -2,7 +2,38 @@
 <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 <svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://bingyi-tian.github.io/categories/ title=categories><span>categories</span></a></li><li><a href=https://bingyi-tian.github.io/tags/ title=tags><span>tags</span></a></li><li><a href=https://example.org title=example.org><span>example.org</span>&nbsp;
 <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a></li></ul></nav></header><main class=main><header class=page-header><div class=breadcrumbs><a href=https://bingyi-tian.github.io/>Home</a></div><h1>Posts
-<a href=/post/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" height="23"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></h1></header><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Run_alpha_wrap3</h2></header><div class=entry-content><p>git clone https://github.com/CGAL/cgal.git
+<a href=/post/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" height="23"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></h1></header><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Cgal配置教程</h2></header><div class=entry-content><p>先安装ceres:
+基于官方文档，我为你推荐最简单实用的安装方案：
+方案1：使用vcpkg一键安装（强烈推荐） 这是最省心的方法，适合99%的用户：
+步骤1：安装vcpkg # 在合适的位置（如D盘根目录）打开PowerShell
+git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+.\bootstrap-vcpkg.bat
+.\vcpkg integrate install 步骤2：安装Ceres及所有依赖 # 安装基础版本（推荐）
+.\vcpkg.exe install ceres:x64-windows
+# 或者安装包含SuiteSparse的完整版本
+.\vcpkg.exe install ceres[suitesparse]:x64-windows 步骤3：配置你的CGAL项目 cd 你的项目目录
+cmake -DCMAKE_BUILD_TYPE=Release ^
+-DCGAL_DIR="D:\VisualStudio\Source\cgal\cgal\cgal" ^
+-DCMAKE_TOOLCHAIN_FILE="D:\vcpkg\scripts\buildsystems\vcpkg.cmake" ^
+../.. 方案2：手动编译（仅限特殊情况） 只有在需要特定版本或自定义配置时才用此方法：
+步骤1：安装依赖 # 先用vcpkg安装依赖（这样最简单）
+.\vcpkg.exe install eigen3 glog gflags:x64-windows 步骤2：编译Ceres git clone https://github.com/ceres-solver/ceres-solver.git
+cd ceres-solver
+mkdir build
+cd build
+# 配置（替换为你的实际路径）
+cmake .. ^
+-DCMAKE_INSTALL_PREFIX="D:\Libraries\ceres" ^
+-DEigen3_DIR="D:\vcpkg\installed\x64-windows\share\eigen3" ^
+-Dglog_DIR="D:\vcpkg\installed\x64-windows\share\glog" ^
+-Dgflags_DIR="D:\vcpkg\installed\x64-windows\share\gflags" ^
+-G "Visual Studio 17 2022" -A x64
+cmake --build . --config Release
+cmake --install . --config Release 验证安装 安装成功后，重新配置项目应该看到：
+...</p></div><footer class=entry-footer><span title='2025-11-16 15:01:36 +0800 CST'>November 16, 2025</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1156 words&nbsp;·&nbsp;bingyi-tian</footer><a class=entry-link aria-label="post link to Cgal配置教程" href=https://bingyi-tian.github.io/post/cgal%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>运行自适应包面算法注意事项</h2></header><div class=entry-content><p>目前算法只支持obj模型</p></div><footer class=entry-footer><span title='2025-10-25 18:28:28 +0800 CST'>October 25, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;word&nbsp;·&nbsp;bingyi-tian</footer><a class=entry-link aria-label="post link to 运行自适应包面算法注意事项" href=https://bingyi-tian.github.io/post/%E8%BF%90%E8%A1%8C%E8%87%AA%E9%80%82%E5%BA%94%E5%8C%85%E9%9D%A2%E7%AE%97%E6%B3%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>自适应alpha的alphawrap参数有哪些</h2></header><div class=entry-content><p>注意很多模型有重复点，要先把重复点消除掉，可以用meshlab
+首先，代码的核心创新点，alpha的特征自适应，是通过feature_coff控制的，具体实现如下（在geometry_utils.h中）： 简洁版本： // 特征边处理 - 更高密度采样 if (是特征边) { mean_sizing /= (基础系数 * 特征系数); } else { mean_sizing /= 基础系数; } 原版本： // 特征边处理 // find feature edge // e_feature_ 是一个标记数组（如Eigen矩阵或二维数组），存储每条边是否为特征边 if (m_oracle.e_feature_(face_id * 3, 0) == 1 || m_oracle.e_feature_(face_id * 3 + 1, 0) == 1 || m_oracle.e_feature_(face_id * 3 + 2, 0) == 1) { // coff_是全局缩放系数，控制整体网格密度。 // feature_coff_是特征边的缩放系数，控制特征边的局部密度。 mean_sizing /= (m_oracle.coff_ * m_oracle.feature_coff_); } else { mean_sizing /= m_oracle.coff_; }
+...</p></div><footer class=entry-footer><span title='2025-10-25 16:19:06 +0800 CST'>October 25, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;111 words&nbsp;·&nbsp;bingyi-tian</footer><a class=entry-link aria-label="post link to 自适应alpha的alphawrap参数有哪些" href=https://bingyi-tian.github.io/post/%E8%87%AA%E9%80%82%E5%BA%94alpha%E7%9A%84alphawrap%E5%8F%82%E6%95%B0%E6%9C%89%E5%93%AA%E4%BA%9B/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Run_alpha_wrap3</h2></header><div class=entry-content><p>git clone https://github.com/CGAL/cgal.git
 PS D:\VisualStudio\Source\cgal\cgal\cgal\Alpha_wrap_3\examples\Alpha_wrap_3> ls
 目录: D:\VisualStudio\Source\cgal\cgal\cgal\Alpha_wrap_3\examples\Alpha_wrap_3
 Mode LastWriteTime Length Name
@@ -22,17 +53,8 @@ cmake -DCMAKE_BUILD_TYPE=Debug -DCGAL_DIR="D:/VisualStudio/Source/cgal/cgal/cgal
 基本类型：Point,Vector,Triangle 数值类型：double,exact rationals 基本操作：距离计算，向量计算 // 例子：使用内核 using Kernel = CGAL::Exact_predicates_inexact_constructions_kernel; Kernel::Point_3 p(1.0,2.0,3.0); // 三维点 Predicate Predicate是进行几何关系判断的函数。
 仅仅用来判断，不计算新几何体。 返回离散结果（是否，正负零） // 判断三点朝向 Orientation orientation(Point p,Point q,Point r); // 判断点与球的位置关系 Sign side_of_oriented_sphere(Point p,Point q,Point r,Point s,Point test); // 比较平方距离 Comparison_result compare_squared_distance(Point p,Point q,FT d2); Oracle Oracle是回答几何查询的抽象接口。
 回答复杂的几何问题 封装复杂算法逻辑 提供统一访问接口 典型Oracle:
-点是否在多面体内？ 两个几何体是否相交？ 找到最近邻点 🔗 三者的工作流程 示例：Delaunay三角剖分 内核提供Point类型 → 谓词判断点位置关系 → Oracle决定如何插入新点 // 1. 内核定义数据类型 Kernel::Point_3 new_point = ...; // 2. 谓词进行几何判断 if (side_of_oriented_sphere(a, b, c, d, new_point) == POSITIVE) { // 3. Oracle根据判断结果做出决策 oracle.insert_point(new_point); } 📊 区别对比表 概念 角色 输出 关键特点 内核 基础提供者 数据类型 提供计算基础设施 几何谓词 精确判断者 离散结果 必须100%准确 Oracle 智能决策者 查询结果 封装复杂逻辑</p></div><footer class=entry-footer><span title='2025-09-23 14:44:18 +0800 CST'>September 23, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;103 words&nbsp;·&nbsp;bingyi-tian</footer><a class=entry-link aria-label="post link to Cgal中kernel Predicate Oracle都是什么鬼" href=https://bingyi-tian.github.io/post/cgal%E4%B8%ADkernel-predicate-oracle%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E9%AC%BC/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Alpha Wrap</h2></header><div class=entry-content><p>算法分为Refinement细化和Carving雕刻 检查门 如果门不可被alpha球穿过，证明这个门已经达到目标尺寸了，所以就停止收缩了，就跳过他
-规则R1（ Refinement - Voronoi边相交 ） 计算门f的对偶边，也就是链接这个门两边的四面体，如果这个连接线与偏移曲面相交，则触发规则R1：
-将从outside指向inside方向的第一个交点作为Steiner点插入到Delaunay三角剖分中。
-规则R2（Refinement - 防止暴露输入） 若两个相邻单元的外接球中心相连组成的线段，与偏移曲面不相交，但是inside这个四面体与输入几何体相交，如果对他进行雕刻的话，就暴露了，所以自然而然的出现！规则2：把这个与输入几何体相交的四面体的外接球球心搞出来，然后往几何体上投影，这个投影就是steiner点。
-雕刻 如果没有触发这些规则：
-门大于alpha球 inside这个四面体不与输入几何相交，即同时不满足上面的两个Rule 门的对偶边，outside四面体和inside四面体的外接球心连线不会与偏移曲面相交 inside 不予输入几何相交 就执行雕刻，雕刻这个词有点装逼，其实就是把inside这个单元标记为outside，然后检查这个outside四面体，把其中新生成的三个面中，满足面的大小大于alpha的面加入门的优先级队列。
-终止条件 首先明确一个数值Φ(f)，Φ(f)就是面f的最小Delaunay球半径？？？？还是外接圆？？？
-也就是说是这个面最小空球半径
-面的 Φ(f) 必然递减，每次插入Steiner点时，新生成的面的Φ(f)
-​
-放了个国庆，要收收心了。</p></div><footer class=entry-footer><span title='2025-09-23 13:38:43 +0800 CST'>September 23, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;30 words&nbsp;·&nbsp;bingyi-tian</footer><a class=entry-link aria-label="post link to Alpha Wrap" href=https://bingyi-tian.github.io/post/alpha-wrap/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://bingyi-tian.github.io/post/>«&nbsp;Prev&nbsp;</a></nav></footer></main><footer class=footer><span>&copy; 2025 <a href=https://bingyi-tian.github.io/>wood</a></span> ·
+点是否在多面体内？ 两个几何体是否相交？ 找到最近邻点 🔗 三者的工作流程 示例：Delaunay三角剖分 内核提供Point类型 → 谓词判断点位置关系 → Oracle决定如何插入新点 // 1. 内核定义数据类型 Kernel::Point_3 new_point = ...; // 2. 谓词进行几何判断 if (side_of_oriented_sphere(a, b, c, d, new_point) == POSITIVE) { // 3. Oracle根据判断结果做出决策 oracle.insert_point(new_point); } 📊 区别对比表 概念 角色 输出 关键特点 内核 基础提供者 数据类型 提供计算基础设施 几何谓词 精确判断者 离散结果 必须100%准确 Oracle 智能决策者 查询结果 封装复杂逻辑</p></div><footer class=entry-footer><span title='2025-09-23 14:44:18 +0800 CST'>September 23, 2025</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;103 words&nbsp;·&nbsp;bingyi-tian</footer><a class=entry-link aria-label="post link to Cgal中kernel Predicate Oracle都是什么鬼" href=https://bingyi-tian.github.io/post/cgal%E4%B8%ADkernel-predicate-oracle%E9%83%BD%E6%98%AF%E4%BB%80%E4%B9%88%E9%AC%BC/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://bingyi-tian.github.io/post/>«&nbsp;Prev&nbsp;
+</a><a class=next href=https://bingyi-tian.github.io/post/page/3/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2025 <a href=https://bingyi-tian.github.io/>wood</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
